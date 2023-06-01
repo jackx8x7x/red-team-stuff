@@ -1,13 +1,10 @@
 # WinRM
 ## Introduction
----
 Windows Remote Management (WinRM) is the Microsoft implementation of the [WS-Management protocol](https://learn.microsoft.com/en-us/windows/win32/winrm/ws-management-protocol)
 
 ## Configuration
----
 
 ## CIM Cmdlet
----
 Introduced in PowerShell ver 3.0.
 
 ### Older WMI Cmdlet
@@ -39,5 +36,4 @@ Get-CimInstance -CimSession $CimSession -ClassName Win32_BIOS
 ```
 
 ## PowerShell Remoting
----
 [Microsoft Learn - Enter-PSSession](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enter-pssession?view=powershell-7.3)  

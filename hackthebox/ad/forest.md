@@ -1,9 +1,6 @@
 # Forest
 
 ## Overview
-
-***
-
 A domain controller created by _HackTheBox_ with Exchange server installed in a minimal AD domain.
 
 Can be used to practice the following techniques or tools.
@@ -13,9 +10,6 @@ Can be used to practice the following techniques or tools.
 * Bloodhound
 
 ## Reconnaissance
-
-***
-
 ### Port Scanning
 
 We use `nmap` to figure out what services are running on the target.
@@ -52,9 +46,6 @@ $ ldapsearch -H ldap://<IP> -x -b 'dc=htb,dc=local'
 ```
 
 ## Initial Access
-
-***
-
 ### Alfresco
 
 From the information gather through anonymous LDAP query, we found a _service account_ named `svc-alfresco`.
@@ -80,8 +71,5 @@ $ evil-winrm -i forest.htb -u svc-alfresco -p s3rvice
 ```
 
 ## Reference
-
-***
-
 [DCSync Attack](../../windows/auth/credential/credential\_dumping.md#dcsync-attack)\
 [WinRM](../../windows/execution/remote/winrm.md)

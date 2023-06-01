@@ -1,12 +1,10 @@
 # Winlogon
 ## Interactive Logon Model
----
 Winlogon, the GINA, and network providers are the parts of the interactive logon model.
 
 Winlogon provides a set of support functions for the GINA DLL
 
 ## GINA
----
 ### Overview
 A Graphical Identification and Authentication dynamic-link library (DLL) loaded by the `winlogon` process.
 
@@ -28,13 +26,11 @@ https://learn.microsoft.com/en-us/windows/win32/secauthn/interaction-between-win
 https://learn.microsoft.com/en-us/windows/win32/secauthn/authentication-functions  
 
 ## Winlogon States
----
 Winlogon maintains the workstation state that is used by the GINA to determine what authentication actions are required.
 
 https://learn.microsoft.com/en-us/windows/win32/secauthn/winlogon-states
 
 ## Desktops
----
 When Winlogon initializes, it registers the `CTRL+ALT+DEL` secure attention sequence (SAS) with the system, and then creates three desktops within the WinSta0 window station.
 
 ### Winlogon Desktop

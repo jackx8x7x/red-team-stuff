@@ -1,13 +1,11 @@
 # Security Support Provider Interface
 
 ## Introduction
----
 Security Support Provider Interface (SSPI) allows an application to use *various security models* available on a computer or network *without changing the interface* to the security system.
 
 https://learn.microsoft.com/en-us/windows/win32/secauthn/sspi-model  
 
 ## Security Support Provider
----
 A security support provider (SSP) is contained in a dynamic-link library (DLL) that implements SSPI.
 
 The DLL makes one or more *security packages* available to applications.
@@ -26,5 +24,4 @@ As NTLM, application should use the *Negotiate security package* instead of acce
 https://learn.microsoft.com/en-us/windows/win32/secauthn/sspi-model  
 
 ## Security Packages
----
 The security packages provide mappings between the SSPI function calls of an application and the functions of an actual security model, *Windows Kerberos* for example.

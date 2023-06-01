@@ -1,6 +1,5 @@
 # Windows API
 ## Win32 API
----
 ### History
 Prior to 64-bit Windows, the 32-bit Windows API was called the Win32 API to distinguish it from the original 16-bit Windows API in 16-bit versions of Windows.
 
@@ -9,7 +8,6 @@ Originally consisted of C-style functions only.
 ### Encoding
 
 ## Component Object Model (COM)
----
 The lack of naming consistency and logical groupings of the C-style API resulted in these newer APIs.
 
 ### Object Linking and Embedding (OLE)
@@ -27,7 +25,6 @@ Client communicate with object through interfaces.
 - Thus component implementation can be loaded dynamically rather than being statically linked to the client.
 
 ## Windows Runtime
----
 Abbreviated *WinRT*.
 
 ### Windows Apps
@@ -42,7 +39,6 @@ WinRT is *built on top of COM*, adding various extensions to the base COM infras
 Applications written in C++, C# (or other .NET languages), and JavaScript can consume WinRT APIs
 
 ## .Net Framework
----
 ### Implementation
 It’s implemented as a COM in-process server (DLL) and uses various facilities provided by the Windows API.
 
@@ -57,6 +53,5 @@ The *run-time engine* for .NET and includes a *Just In Time (JIT) compiler* that
 A large collection of types that implement functionality typically needed by client and server applications
 
 ## Reference
----
 [Windows Internals, Part 1](https://learning.oreilly.com/library/view/windows-internals-part/9780133986471/ch01.html#ch01lev2sec)  
 [Windows App Development - Programming reference for the Win32 API](https://learn.microsoft.com/en-us/windows/win32/api/)  

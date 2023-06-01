@@ -1,6 +1,5 @@
 # LDAP
 ## Active Directory
----
 Active Directory is a server for LDAP.
 
 [Microsoft Learn - MS-ADTS - LDAP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/3c5916a9-f1a0-429d-b937-f8fe672d777c)  
@@ -18,7 +17,6 @@ LDAP is the only system-supplied Active Directory Service Interfaces (ADSI) prov
 [Microsoft Learn - DirectorySearcher Class](https://learn.microsoft.com/en-us/dotnet/api/system.directoryservices.directorysearcher?view=dotnet-plat-ext-7.0)  
 
 ## RootDSE
----
 The logical root of a directory server, whose distinguished name (DN) is the empty string (nameless entry).
 
 As a mechnism for clients of an LDAP server to interact with the server itself, rather than with particular objects contained by the server.
@@ -28,7 +26,6 @@ The rootDSE contains the configuration status of the server, it contains attribu
 > Access to this entry is typically available to *unauthenticated clients*.
 
 ## Authentication
----
 Bind operations are used to authenticate clients to the directory server.  
 LDAP *bind request* use either simple or SASL authentication.
 
@@ -64,7 +61,6 @@ The password attribute of an account object is further protected by a second enc
 [Microsoft Learn - ADTS - LDAP Authentication](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/baf8d08c-aa1b-40a0-9912-a46145e87878)  
 
 ## Simple Bind
----
 ### Anonymous Authentication
 The legitimate use case for this is *LDAP configuration discovery*.  
 
@@ -114,7 +110,6 @@ If the name field of the BindRequest maps to a single object using the attempted
 [[MS-SAMR] - clearTextPassword](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-samr/56a9c9d7-2ec6-4c49-9266-31b9b6ed82fb)  
 
 ## Search
----
 ### Filter
 Used to identify entries in search requests.
 
@@ -122,7 +117,6 @@ Used to identify entries in search requests.
 [[MS-ADTS] - Abstract Data Model - Read](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/561cd2cb-1c79-4561-bfc2-13c82113d418) 
 
 ## Tools
----
 ### ldapsearch
 Here we use `ldapsearch` with anonymous authentication to fetch the roo.  of a directory server information tree.
 ```
@@ -160,12 +154,10 @@ $Results
 [Microsoft Learn - DirectorySearcher Class](https://learn.microsoft.com/en-us/dotnet/api/system.directoryservices.directorysearcher?view=dotnet-plat-ext-7.0)  
 
 ## Usage
----
 ### Third-party Service
 Third-party applications that integrate with AD usually use LDAP to authenticate users.
 
 These services often store their AD credential in plain text in configuration files.
 
 ## Reference
----
 [Netwrix - LDAP Reconnaissance](https://www.netwrix.com/ldap_reconnaissance_active_directory.html)

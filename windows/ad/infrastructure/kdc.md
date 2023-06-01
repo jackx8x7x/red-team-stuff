@@ -8,19 +8,15 @@ Both Active Directory and KDC run as part of the LSA's process on a *domain cont
 The KDC is a single process that provides two services: *Authentication and Ticket-Granting service*.
 
 ## Authentication Service (AS)
----
 This service issues ticket-granting tickets (TGTs).
 
 ## Ticket-Granting Service (TGS)
----
 When clients want access to a computer, they contact the ticket-granting service in the target computer's domain, *present a TGT*, and ask for a ticket to the computer.
 
 ## LSA
----
 Both Active Directory and KDC services are started automatically by the domain controller's [_Local Security Authority_](https://learn.microsoft.com/en-us/windows/win32/secgloss/l-gly) (LSA) and run as part of the LSA's process.
 
 ## Account `krbtgt`
----
 The [_security principal_](https://learn.microsoft.com/en-us/windows/win32/secgloss/s-gly) name used by the KDC in any domain.
 
 Created automatically when a new domain is created.
@@ -33,7 +29,6 @@ The password for the KDC's account is used to derive a cryptographic key for enc
 Refer to [Golden Ticket Attack](./kdc.md#golden-ticket-attack).
 
 ## Golden Ticket Attack
----
 ### Tools
 - Rubeus
 - Mimikatz
@@ -42,5 +37,4 @@ Refer to [Golden Ticket Attack](./kdc.md#golden-ticket-attack).
 [Netwrix - Golden Ticket Attack](https://www.netwrix.com/how_golden_ticket_attack_works.html)  
 
 ## Reference
----
 [Microsoft Learn - Key Distribution Center](https://learn.microsoft.com/en-us/windows/win32/secauthn/key-distribution-center)  

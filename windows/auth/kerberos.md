@@ -1,6 +1,5 @@
 # Kerberos
 ## Introduction
----
 The Kerberos protocol defines how clients interact with a network authentication service.
 
 ### Kerberos Tickets
@@ -21,12 +20,10 @@ https://learn.microsoft.com/en-us/windows/win32/secauthn/microsoft-negotiate
 https://learn.microsoft.com/en-us/windows/win32/secauthn/microsoft-kerberos  
 
 ## Authentication
----
 ### AS-REQ
 
 
 ## Attacks
----
 ### Kerberoasting
 
 [Netwrix - Kerberoasting Attack](https://www.netwrix.com/cracking_kerberos_tgs_tickets_using_kerberoasting.html)

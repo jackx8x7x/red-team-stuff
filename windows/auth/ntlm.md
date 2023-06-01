@@ -1,6 +1,5 @@
 # Windows NTLM
 ## Introduction
----
 Authentication protocol used on networks that include systems running the Windows operating system and on stand-alone systems.
 
 Provided through the SSP pacakge.
@@ -8,7 +7,6 @@ Provided through the SSP pacakge.
 https://learn.microsoft.com/en-us/windows/win32/secauthn/microsoft-ntlm  
 
 ## Authentication Process
----
 ### Involved Parties
 In the Interactive NTLM authentication over a network case, the process involve:
 - a client system, where the user is requesting authentication, and

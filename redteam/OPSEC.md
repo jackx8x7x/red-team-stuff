@@ -1,6 +1,5 @@
 # OPSEC
 ## Overview
----
 Operations Security.
 
 ### Process
@@ -12,7 +11,6 @@ A typical OPSEC process consists of the following 5 steps:
 5. Apply appropriate countermeasures
 
 ## Threat
----
 Threat analysis refers to identifying potential adversaries and their intentions and capabilities.
 
 ### Who
@@ -22,5 +20,4 @@ Threat analysis refers to identifying potential adversaries and their intentions
 ### Cababilities
 
 ## Reference
----
 [TryHackMe - OPSEC](https://tryhackme.com/room/opsec)  
