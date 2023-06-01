@@ -11,8 +11,8 @@
 
 ## Windows
 - [Execution](windows/execution/README.md)
-    - [Windows APIs](windows/execution/windows_api.md)
-    - [Remote Access](windows/remote/README.md)
+    - [Windows APIs](windows/execution/api/README.md)
+    - [Remote Access](windows/execution/remote/README.md)
         - [WinRM](windows/execution/remote/winrm.md)
 - [Authentication](windows/auth/README.md)
     - [Kerberos](windows/auth/kerberos.md)
