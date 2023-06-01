@@ -2,12 +2,12 @@
 
 ## HackTheBox
 
-* [Active Directory](hackthebox/ad/README.md)
+* [Active Directory](README.md)
   * [Forest](hackthebox/ad/forest.md)
   * [Support](hackthebox/ad/support.md)
   * [Sauna](hackthebox/ad/sauna.md)
   * [Active](hackthebox/ad/active.md)
-* [Windows](README.md)
+* [Windows](<README (1).md>)
 * [Linux](hackthebox/linux/README.md)
 
 ## Windows
