@@ -6,8 +6,8 @@ A domain controller created by _HackTheBox_ with Exchange server installed in a 
 
 The machine covers the following techniques:
 
-* [ASREPRoasting](../../windows/auth/kerberos.md#asreproasting)
-* [DCSync attack](../../windows/auth/credential/credential\_dumping.md#dcsync-attack)
+* [ASREPRoasting](../../../windows/auth/kerberos.md#asreproasting)
+* [DCSync attack](../../../windows/auth/credential/credential\_dumping.md#dcsync-attack)
 * Bloodhound
 
 ## Reconnaissance
@@ -41,7 +41,7 @@ The results reveal the following information.
 
 ### LDAP
 
-It seems that we can fetch information about the target AD domain via [LDAP anonymous authentication](../../windows/ad/infrastructure/ldap.md#anonymous-authentication).
+It seems that we can fetch information about the target AD domain via [LDAP anonymous authentication](../../../windows/ad/infrastructure/ldap.md#anonymous-authentication).
 
 ```bash
 $ ldapsearch -H ldap://<IP> -x -b 'dc=htb,dc=local'
@@ -59,15 +59,15 @@ By google, we found a product named [Alfresco Content Services](https://docs.alf
 
 From the configuration, we see that the account related to this service has been configured with _Kerberos pre-authentication_ disable.
 
-<figure><img src="../../images/forest_alfresco.png" alt=""><figcaption><p><a href="https://docs.alfresco.com/process-services/latest/config/authenticate/#configuration-steps">Alfresco - Configuration Steps</a></p></figcaption></figure>
+<figure><img src="../../../images/forest_alfresco.png" alt=""><figcaption><p><a href="https://docs.alfresco.com/process-services/latest/config/authenticate/#configuration-steps">Alfresco - Configuration Steps</a></p></figcaption></figure>
 
-This allows us to get the TGT for this account `svc-alfresco`, and conduct the [_ASREPRoasting_](../../windows/auth/kerberos.md#asreproasting)[ ](../../windows/auth/kerberos.md#asreproasting)attack to retrieve the account password from the requested TGT.
+This allows us to get the TGT for this account `svc-alfresco`, and conduct the [_ASREPRoasting_](../../../windows/auth/kerberos.md#asreproasting)[ ](../../../windows/auth/kerberos.md#asreproasting)attack to retrieve the account password from the requested TGT.
 
 ### ASREPRoasting
 
 ### WinRM
 
-We can now login to the target host with the credential we got via [WinRM](../../windows/execution/remote/winrm.md).
+We can now login to the target host with the credential we got via [WinRM](../../../windows/execution/remote/winrm.md).
 
 ```bash
 $ evil-winrm -i forest.htb -u svc-alfresco -p s3rvice
@@ -75,5 +75,5 @@ $ evil-winrm -i forest.htb -u svc-alfresco -p s3rvice
 
 ## Reference
 
-[DCSync Attack](../../windows/auth/credential/credential\_dumping.md#dcsync-attack)\
-[WinRM](../../windows/execution/remote/winrm.md)
+[DCSync Attack](../../../windows/auth/credential/credential\_dumping.md#dcsync-attack)\
+[WinRM](../../../windows/execution/remote/winrm.md)

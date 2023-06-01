@@ -2,12 +2,12 @@
 
 ## HackTheBox
 
-* [Active Directory](README.md)
-  * [Forest](hackthebox/ad/forest.md)
-  * [Support](hackthebox/ad/support.md)
-  * [Sauna](hackthebox/ad/sauna.md)
-  * [Active](hackthebox/ad/active.md)
-* [Windows](<README (1).md>)
+* [Windows](README.md)
+  * [Active Directory](hackthebox/ad/active-directory/README.md)
+    * [Forest](hackthebox/ad/active-directory/forest.md)
+    * [Sauna](hackthebox/ad/active-directory/sauna.md)
+    * [Support](hackthebox/ad/active-directory/support.md)
+    * [Active](hackthebox/ad/active-directory/active.md)
 * [Linux](hackthebox/linux/README.md)
 
 ## Windows
@@ -17,6 +17,7 @@
   * [Remote Access](windows/execution/remote/README.md)
     * [WinRM](windows/execution/remote/winrm.md)
 * [Authentication](windows/auth/README.md)
+  * [Logon](windows/auth/logon.md)
   * [Kerberos](windows/auth/kerberos.md)
   * [Credential](windows/auth/credential/README.md)
     * [Credential dumping](windows/auth/credential/credential\_dumping.md)

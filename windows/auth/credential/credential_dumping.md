@@ -12,4 +12,4 @@ File used by AD DS to store [directory data](../../ad/infrastructure/adds.md#dat
 
 ### Related HackTheBox machines
 
-* [Forest](../../../hackthebox/ad/forest.md)
+* [Forest](../../../hackthebox/ad/active-directory/forest.md)

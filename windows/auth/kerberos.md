@@ -28,6 +28,8 @@ To allow Negotiate to select the Kerberos security provider, the client app must
 
 ### AS-REQ
 
+### AS-REP
+
 ## Attacks
 
 ### Kerberoasting
