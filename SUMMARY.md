@@ -17,6 +17,7 @@
   * [Remote Access](windows/execution/remote/README.md)
     * [WinRM](windows/execution/remote/winrm.md)
 * [Authentication](windows/auth/README.md)
+  * [Overview](windows/auth/overview.md)
   * [Logon](windows/auth/logon.md)
   * [Kerberos](windows/auth/kerberos.md)
   * [Credential](windows/auth/credential/README.md)
@@ -28,6 +29,8 @@
     * [AD Objects](windows/ad/infrastructure/object.md)
     * [LDAP](windows/ad/infrastructure/ldap.md)
     * [Key Distribution Center](windows/ad/infrastructure/kdc.md)
+* [Windows Protocols](windows/windows-protocols/README.md)
+  * [SMB](windows/windows-protocols/smb.md)
 
 ## Defense
 
