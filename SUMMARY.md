@@ -1,5 +1,7 @@
 # Table of contents
 
+* [About](README.md)
+
 ## HackTheBox
 
 * [Windows](hackthebox/windows/README.md)
