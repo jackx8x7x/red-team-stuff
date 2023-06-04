@@ -64,7 +64,7 @@ Client and server applications interact with
 
 _components of Authentication Services respectively_.
 
-<figure><img src="../../.gitbook/assets/圖片 (1).png" alt=""><figcaption><p>GSS API decoupled application protocols from authentication protocols.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/圖片 (1) (1).png" alt=""><figcaption><p>GSS API decoupled application protocols from authentication protocols.</p></figcaption></figure>
 
 ### Authentication Process
 
