@@ -6,13 +6,17 @@ The Kerberos protocol defines how clients interact with a network authentication
 
 ### Kerberos Tickets
 
-Clients obtain tickets from the [Kerberos Key Distribution Center (KDC)](../ad/infrastructure/kdc.md), and they present these tickets to servers when connections are established. Kerberos tickets represent the client's network credentials.
+Clients obtain tickets from the [Kerberos Key Distribution Center (KDC)](../../ad/kdc/), and they present these tickets to servers when connections are established. Kerberos tickets represent the client's network credentials.
+
+{% embed url="https://learn.microsoft.com/en-us/windows/win32/secauthn/ticket-granting-tickets" %}
 
 ### GSS API
 
-Applications that use AP exchange messages directly are typically called "kerberized" applications. Most applications use the Generic Security Service Application Program Interface ([GSS-API](overview.md#generic-security-services-gss)) and can even be wrapped by higher-level abstractions such as Simple Authentication and Security Layer (SASL) [\[RFC2222\]](https://go.microsoft.com/fwlink/?LinkId=90322).
+Applications that use AP exchange messages directly are typically called "kerberized" applications. Most applications use the [Generic Security Service Application Program Interface](../overview.md#generic-security-services-gss) (GSS-API) and can even be wrapped by higher-level abstractions such as Simple Authentication and Security Layer (SASL) [\[RFC2222\]](https://go.microsoft.com/fwlink/?LinkId=90322).
 
 ### Active Directory
+
+{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/27e4854f-1aa5-4f67-8f50-ab745dd85c3a" %}
 
 Microsoft extend the Keberos authorization data to provide the server with additional information such as:
 
@@ -21,7 +25,7 @@ Microsoft extend the Keberos authorization data to provide the server with addit
 * Interactive logon information
 * Integrity levels
 
-{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/27e4854f-1aa5-4f67-8f50-ab745dd85c3a" %}
+{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/dddd6a90-5d6c-44e7-9081-75a468795986" %}
 
 {% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pac/166d8064-c863-41e1-9c23-edaaa5f36962" %}
 
@@ -41,16 +45,24 @@ Kerberos V5 is composed of three exchanges:
 * The Ticket-Granting Service (TGS) exchange
 * The Client/Server Authentication Protocol (AP) exchange
 
-<figure><img src="../../.gitbook/assets/圖片 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/圖片 (1).png" alt=""><figcaption></figcaption></figure>
 
 The AS exchange and TGS exchange are transported by Kerberos implementations. The AP exchange is passive and relies on an upper-layer application protocol to carry the AP exchange messages.
 
 {% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/b4af186e-b2ff-43f9-b18e-eedb366abf13" %}
 
+### Format
+
+The ticket formats is defined in [\[RFC4120\] section 5.3](https://datatracker.ietf.org/doc/html/rfc4120#section-5.3).
+
+The exchange message format is defined in [\[RFC4120\] section 5.4](https://datatracker.ietf.org/doc/html/rfc4120#section-5.4).
+
+Also, we can consume the code in Impakct packages to understand the protocol.
+
 ### AS Exchange
 
 1. **KRB\_AS\_REQ**\
-   The client presents its principal name and can present pre-authentication information ([\[RFC4120\] ](https://datatracker.ietf.org/doc/html/rfc4120#section-7.5.2)sections 5.2.7 and 7.5.2) to request a ticket-granting ticket (TGT) from the KDC (\[RFC4120] section 5.3).
+   The client presents its principal name and can present [pre-authentication](as-rep-roasting-attack.md#pre-authentication) information ([\[RFC4120\] ](https://datatracker.ietf.org/doc/html/rfc4120#section-7.5.2)sections 5.2.7 and 7.5.2) to request a ticket-granting ticket (TGT) from the KDC (\[RFC4120] section 5.3).
 2. **KRB\_AS\_REP**\
    The KDC returns a TGT and a session key the client can use to encrypt and authenticate communication with the KDC _for ticket-granting service (TGS) requests in the TGS exchange_, without reusing the persistent key.
 
@@ -93,13 +105,3 @@ A SPN must be uniqe in a forest in which it is registered.
 Typically, SPN registration is done by a service installation program running with domain administrator privileges.
 
 {% embed url="https://learn.microsoft.com/en-us/windows/win32/ad/how-a-service-registers-its-spns" %}
-
-## Attacks
-
-### Kerberoasting
-
-[Netwrix - Kerberoasting Attack](https://www.netwrix.com/cracking\_kerberos\_tgs\_tickets\_using\_kerberoasting.html)
-
-[Active Directory Kerberoasting Attack: Monitoring and Detection Techniques](https://www.scitepress.org/Papers/2020/89550/89550.pdf)
-
-### ASREPRoasting

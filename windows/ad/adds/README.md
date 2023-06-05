@@ -71,7 +71,7 @@ Application directory partitions hold directory data specific to a particular ap
 
 ## Account Database
 
-An account database maintains the [security principals](../../../auth/overview.md#security-principal) and necessary information for authentication and other purposes.
+An account database maintains the [security principals](../../auth/overview.md#security-principal) and necessary information for authentication and other purposes.
 
 ### Password Attributes
 

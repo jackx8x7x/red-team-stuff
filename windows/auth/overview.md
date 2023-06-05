@@ -6,7 +6,7 @@ The Authentication Services protocols verify the identity of users, computers, a
 
 ## Introduction
 
-<figure><img src="../../.gitbook/assets/圖片 (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/圖片 (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/523ed32c-3a6c-4a3d-b50b-bb99e321c2eb" %}
 
@@ -37,7 +37,7 @@ as an identity of a security principal.
 
 An account database maintains the [security principals](overview.md#security-principal) and necessary information for authentication and other purposes.
 
-* an [Active Directory database](../ad/infrastructure/adds/#account-database) maintains the domain security principals, whereas
+* an [Active Directory database](../ad/adds/#account-database) maintains the domain security principals, whereas
 * the [security account manager (SAM) built-in database](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_6bb6ffcf-2a22-4989-89ef-6c9937f91b8b) maintains local security principals
 
 ## Generic Security Services (GSS)
