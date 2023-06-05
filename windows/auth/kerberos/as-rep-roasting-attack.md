@@ -56,7 +56,7 @@ If a file of user names is provided, the class call its method `reques_users_fil
             return
 ```
 
-If `doKerberos` is set _or_ `no_pass` is false, the script will do the LDAP search to find domain accounts:
+If `doKerberos` is set _or_ `no_pass` is false, the script will do the LDAP search to find domain accounts with property `Do not require Kerberos preauthentication` set`UF_DONT_REQUIRE_PREAUTH`:
 
 ```python
         # Connect to LDAP
@@ -76,13 +76,15 @@ If `doKerberos` is set _or_ `no_pass` is false, the script will do the LDAP sear
                                          sizeLimit=999)
 ```
 
-Also, we can use this filter with the command `ldapsearch` to get a list of usernames.
+Also, we can use this filter with the command `ldapsearch` to get the same results:
 
 {% code overflow="wrap" %}
 ```bash
-$ ldapsearch -H ldap://forest -x "(&(UserAccountControl:1.2.840.113556.1.4.803:=$((0x00010000)))(!(UserAccountControl:1.2.840.113556.1.4.803:=$((0x00000002))))(!(objectCategory=computer)))" -b 'dc=htb,dc=local'
+$ ldapsearch -H ldap://forest -x -b 'dc=htb,dc=local' -D svc-alfresco@htb.local -w s3rvice '(&(UserAccountControl:1.2.840.113556.1.4.803:=4194304)(!(UserAccountControl:1.2.840.113556.1.4.803:=2))(!(objectCategory=computer)))'
 ```
 {% endcode %}
+
+{% embed url="https://learn.microsoft.com/en-us/troubleshoot/windows-server/identity/useraccountcontrol-manipulate-account-properties" %}
 
 Either way, the class will call its method `getTGT` to try to get the TGT ticket for an account.
 
