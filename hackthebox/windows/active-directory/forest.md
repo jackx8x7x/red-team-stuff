@@ -41,7 +41,7 @@ The results reveal the following information.
 
 ### LDAP
 
-It seems that we can fetch information about the target AD domain via [LDAP anonymous authentication](../../../windows/ad/infrastructure/ldap.md#anonymous-authentication).
+It seems that we can fetch information about the target AD domain via [LDAP anonymous authentication](../../../windows/ad/infrastructure/adds/ldap.md#anonymous-authentication).
 
 ```bash
 $ ldapsearch -H ldap://<IP> -x -b 'dc=htb,dc=local'

@@ -6,36 +6,43 @@ description: Stuff about logon process.
 
 ## Types of Logon
 
+The Authentication Services protocols provide authentication services for applications like:
+
+* interactive applications, such as Winlogon, or
+* distributed client and server applications, such as a web browser, web server, or a file client or a file server, or
+* any other type of client and server application
+
+through the following methods:
+
+* Interactive Logon
+  * Local Logon
+  * Domain Logon/Smart Card Domain Logon
+* Network
+
+{% embed url="https://learn.microsoft.com/en-us/windows-server/security/windows-authentication/windows-logon-scenarios" %}
+
 ### Interactive Logon
 
-Using a _local user account_ or a _domain account for:_
+The logon process begins either when a user enters credentials in the credentials entry dialog box, or when the user inserts a smart card into the smart card reader, or when the user interacts with a biometric device.
+
+Users can perform an interactive logon by using _a local user account_ for local logon or _a domain account_ for domain logon by using the security account database on _the user's local computer_ or by using _the domain's directory service_.
 
 * Local logon\
   Logon to a local account grants a user access to Windows resources on the local computer and requires that the user has a user account in the account database maintained by the _Security Account Manager (SAM)_ on the local computer.
-* Domain Logon\
+* Domain Logon/Smart Card Domain Logon\
   A process that proves the identity of the user to the domain controller, implies eventual user access to local and domain resources, and requires that the user has a user account in an account database, such as Active Directory.
 
 A user can interactively logon to a computer _locally_ or _remotely through_ Terminal Services.
 
+{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/bfc67803-2c41-4fde-8519-adace79465f6" %}
+
 ### Network Logon
 
-Used only after interactive logon authentication _has taken place_.
-
-{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/bfc67803-2c41-4fde-8519-adace79465f6" %}
-Interactive Logon
-{% endembed %}
+Used only after interactive logon authentication _has taken place_. During network logon, the process _does not_ use the credentials entry dialog boxes to collect data
 
 {% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/131b1590-0c21-46e1-96bf-995a7a2cc461" %}
 Network Logon
 {% endembed %}
-
-### Abstract
-
-The Windows user logon interface calls the LSA method to securely transfer the user credentials to the Authentication Authority through a _specified authentication protocol_.
-
-<figure><img src="../../.gitbook/assets/圖片.png" alt=""><figcaption><p>Abstract view of interactive domain logon authentication</p></figcaption></figure>
-
-{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/5fec2d4d-bb86-4469-b9c3-b1436d8ab681" %}
 
 ## Domain Logon
 

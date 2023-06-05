@@ -1,17 +1,14 @@
 # Overview
 
+The Authentication Services protocols verify the identity of users, computers, and services through the interactive logon and network logon authentication processes. Once authenticated, these entities can be authorized to access network resources securely.
+
+{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/953d700a-57cb-4cf7-b0c3-a64f34581cc9" %}
+
 ## Introduction
 
-Both the client and server versions of Windows implement standard authentication protocols including:
+<figure><img src="../../.gitbook/assets/圖片 (3).png" alt=""><figcaption></figcaption></figure>
 
-* [Kerberos](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_d6a282ce-b1da-41e1-b05a-22f777a5c1fe),
-* [Transport Layer Security (TLS)](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_f2bc7fed-7e02-4fa5-91b3-97f5c978563a), and
-* Simple and Protected _Generic Security Service Application Program Interface_ ([GSS](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_95f6b299-ec2f-4cef-87df-217f95bd9e14)-API) Negotiation Mechanism ([SPNEGO](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_bc2f6b5e-e5c0-408b-8f55-0350c24b9838)),
-* and their extensions, as specified in [\[MS-KILE\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9), [\[MS-TLSP\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-tlsp/58aba05b-62b0-4cd1-b88b-dc8a24920346), [\[MS-SPNG\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-spng/f377a379-c24f-4a0f-a3eb-0d835389e28a), and [\[MS-NEGOEX\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-negoex/0ad7a003-ab56-4839-a204-b555ca6759a2) respectively.
-
-_as part of an extensible architecture that consists of security support provider (SSP) security packages._
-
-{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/12d45bd3-be57-41f4-a44d-8876739e7623" %}
+{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/523ed32c-3a6c-4a3d-b50b-bb99e321c2eb" %}
 
 ## Security Principal
 
@@ -35,6 +32,13 @@ Windows uses a [security identifier (SID)](https://learn.microsoft.com/en-us/ope
 * a smaller integer representing an identity relative to the account authority termed the relative identifier (RID)
 
 as an identity of a security principal.
+
+### Account Database
+
+An account database maintains the [security principals](overview.md#security-principal) and necessary information for authentication and other purposes.
+
+* an [Active Directory database](../ad/infrastructure/adds/#account-database) maintains the domain security principals, whereas
+* the [security account manager (SAM) built-in database](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_6bb6ffcf-2a22-4989-89ef-6c9937f91b8b) maintains local security principals
 
 ## Generic Security Services (GSS)
 
@@ -102,6 +106,15 @@ SSPI provides the means for connected network applications to call _one of sever
 {% embed url="https://learn.microsoft.com/en-us/windows/win32/secauthn/sspi" %}
 
 ### Security Support Package (SSP)
+
+Both the client and server versions of Windows implement standard authentication protocols including:
+
+* [Kerberos](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_d6a282ce-b1da-41e1-b05a-22f777a5c1fe),
+* [Transport Layer Security (TLS)](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_f2bc7fed-7e02-4fa5-91b3-97f5c978563a), and
+* Simple and Protected _Generic Security Service Application Program Interface_ ([GSS](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_95f6b299-ec2f-4cef-87df-217f95bd9e14)-API) Negotiation Mechanism ([SPNEGO](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-authsod/64781df1-ee20-413e-b8c5-6511c90dbc30#gt\_bc2f6b5e-e5c0-408b-8f55-0350c24b9838)),
+* and their extensions, as specified in [\[MS-KILE\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9), [\[MS-TLSP\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-tlsp/58aba05b-62b0-4cd1-b88b-dc8a24920346), [\[MS-SPNG\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-spng/f377a379-c24f-4a0f-a3eb-0d835389e28a), and [\[MS-NEGOEX\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-negoex/0ad7a003-ab56-4839-a204-b555ca6759a2) respectively.
+
+as part of an extensible architecture that _consists of security support provider (SSP) security packages_ to enable the authentication of users, computers, and services. The authentication process, in turn, enables authorized users and services to access resources securely.
 
 Each SSP provides mappings between the SSPI function calls of an application and the functions of an actual security model.
 
