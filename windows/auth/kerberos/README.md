@@ -105,3 +105,13 @@ A SPN must be uniqe in a forest in which it is registered.
 Typically, SPN registration is done by a service installation program running with domain administrator privileges.
 
 {% embed url="https://learn.microsoft.com/en-us/windows/win32/ad/how-a-service-registers-its-spns" %}
+
+## Privilege Attribute Certificate (PAC)
+
+The Privilege Attribute Certificate (PAC) was created to provide the authorization data, which the Kerberos protocol doesn't provide, for Kerberos Protocol Extensions \[MS-KILE].
+
+Into the PAC structure \[MS-KILE] encodes authorization information, which consists of group memberships, additional credential information, profile, and policy information, and supporting security metadata.
+
+The Kerberos protocol allows a field within the Kerberos ticket to carry authorization information, and Windows uses that field to carry information about Windows groups.
+
+{% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pac/c38cc307-f3e6-4ed4-8c81-dc550d96223c" %}

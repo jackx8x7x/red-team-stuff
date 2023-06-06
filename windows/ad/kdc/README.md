@@ -36,7 +36,7 @@ A random password value is assigned to the account automatically by the system d
 
 The password for the KDC's account is used to derive a cryptographic key for encrypting and decrypting the TGTs that it issues.
 
-Refer to [Golden Ticket Attack](./#golden-ticket-attack).
+Refer to [Golden Ticket Attack](golden-ticket-attack.md).
 
 ## Golden Ticket Attack
 
