@@ -48,15 +48,19 @@ Network Logon
 
 ### Kerberos
 
-The domain logon authentication process first tries the Kerberos Authentication Protocol (\[MS-KILE]). If Kerberos fails, the authentication process falls back to the NTLM pass-through mechanism (\[MS-APDS]).
+The domain logon authentication process first tries the [Kerberos Authentication Protocol](logon.md#kerberos) (\[MS-KILE]). If Kerberos fails, the authentication process falls back to the NTLM pass-through mechanism (\[MS-APDS]).
 
 1. First, the client request the TGT from the KDC.
 2. Client then requests the service ticket _for the domain-joined computer_.
 3. Finally, Client submits the service ticket to verify the user logon information.
 
-See [Kerberos](kerberos/).
-
 {% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-authsod/2e9de599-e791-4b3d-bb0c-2ffbef5ee665" %}
+
+### Packet Tracing
+
+{% embed url="https://medium.com/@robert.broeckelmann/kerberos-wireshark-captures-a-windows-login-example-151fabf3375a" %}
+
+{% embed url="https://wiki.wireshark.org/Kerberos" %}
 
 ## References
 

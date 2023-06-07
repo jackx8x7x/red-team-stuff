@@ -9,4 +9,6 @@ An account database maintains the [security principals](../overview.md#security-
 
 ### NTDS.dit
 
-File used by AD DS to store [directory data](../../ad/adds/#data-store).
+File `C:\Windows\NTDS\ntds.dit` is used by AD DS to store [directory data](../../ad/adds/#data-store).
+
+{% embed url="https://wiki.wireshark.org/Kerberos" %}
