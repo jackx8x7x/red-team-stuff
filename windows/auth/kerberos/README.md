@@ -59,7 +59,7 @@ Kerberos V5 is composed of three exchanges:
 * The Ticket-Granting Service (TGS) exchange
 * The Client/Server Authentication Protocol (AP) exchange
 
-<figure><img src="../../../.gitbook/assets/圖片 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/圖片 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The AS exchange and TGS exchange are transported by Kerberos implementations. The AP exchange is passive and relies on an upper-layer application protocol to carry the AP exchange messages.
 

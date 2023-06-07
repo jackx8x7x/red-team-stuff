@@ -35,6 +35,12 @@
 * [Windows Protocols](windows/windows-protocols/README.md)
   * [SMB](windows/windows-protocols/smb.md)
 
+## Web
+
+* [Authentication](web/authentication/README.md)
+  * [SAML](web/authentication/saml.md)
+  * [OAuth](web/authentication/oauth.md)
+
 ## Defense
 
 * [Windows](defense/windows/README.md)

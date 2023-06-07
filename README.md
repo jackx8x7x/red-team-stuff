@@ -1,3 +1,3 @@
 # About
 
-Some notes, write-ups for HackTheBox machines, and topic research.
+Some notes about security, techniques, and HackTheBox machines write-ups.

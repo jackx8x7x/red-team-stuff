@@ -46,7 +46,7 @@ Refer to [MS-SMB2 - Overview](https://learn.microsoft.com/en-us/openspecs/window
 
 Information about protocols used by the SMB or use SMB.
 
-![](<../../.gitbook/assets/圖片 (2) (1).png>)
+![](<../../.gitbook/assets/圖片 (2) (1) (1).png>)
 
 {% embed url="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/06451bf2-578a-4b9d-94c0-8ce531bf14c4" %}
 
