@@ -11,6 +11,7 @@
     * [Support](hackthebox/windows/active-directory/support.md)
     * [Active](hackthebox/windows/active-directory/active.md)
 * [Linux](hackthebox/linux/README.md)
+  * [TwoMillion](hackthebox/linux/twomillion.md)
 
 ## Windows
 

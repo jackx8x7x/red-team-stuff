@@ -4,7 +4,7 @@
 
 Security Assertion Markup Language (SAML) is primarily used to implement the _Single Sign-On_ between one or multiple Service Provider_s_ and one IDentity Provider.
 
-<figure><img src="../../.gitbook/assets/圖片 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/圖片 (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### Usage
 

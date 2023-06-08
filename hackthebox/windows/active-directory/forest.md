@@ -91,7 +91,7 @@ HASH: $krb5asrep$23$user@domain.com:3e156ada591263b8aab0965f5aebd837$007497cb51b
 
 and get the password `s3rvice` for the account `svc-alfresco.`
 
-<figure><img src="../../../.gitbook/assets/圖片 (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/圖片 (3) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### WinRM
 
