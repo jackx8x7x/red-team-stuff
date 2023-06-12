@@ -12,6 +12,7 @@
     * [Active](hackthebox/windows/active-directory/active.md)
 * [Linux](hackthebox/linux/README.md)
   * [TwoMillion](hackthebox/linux/twomillion.md)
+  * [Soccer](hackthebox/linux/soccer.md)
 
 ## Windows
 
@@ -35,6 +36,11 @@
     * [Golden Ticket Attack](windows/ad/kdc/golden-ticket-attack.md)
 * [Windows Protocols](windows/windows-protocols/README.md)
   * [SMB](windows/windows-protocols/smb.md)
+
+## Linux
+
+* [Process](linux/process/README.md)
+  * [Namespace](linux/process/namespace.md)
 
 ## Web
 

