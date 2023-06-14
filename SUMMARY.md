@@ -7,9 +7,6 @@
 * [Windows](hackthebox/windows/README.md)
   * [Active Directory](hackthebox/windows/active-directory/README.md)
     * [Forest](hackthebox/windows/active-directory/forest.md)
-    * [Sauna](hackthebox/windows/active-directory/sauna.md)
-    * [Support](hackthebox/windows/active-directory/support.md)
-    * [Active](hackthebox/windows/active-directory/active.md)
 * [Linux](hackthebox/linux/README.md)
   * [TwoMillion](hackthebox/linux/twomillion.md)
   * [Soccer](hackthebox/linux/soccer.md)
@@ -56,5 +53,7 @@
 ## Development
 
 * [Programming Language](development/programming-language.md)
+* [Database](development/database/README.md)
+  * [MySQL](development/database/mysql.md)
 * [Virtualization](development/virtualization/README.md)
   * [Container](development/virtualization/container.md)

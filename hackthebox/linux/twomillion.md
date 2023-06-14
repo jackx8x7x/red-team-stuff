@@ -186,7 +186,7 @@ $ curl -XPUT -l -H 'Cookie: PHPSESSID=<PHPSESSID>' http://2million.htb/api/v1/ad
 
 We can authenticate as an admin now.
 
-<figure><img src="../../.gitbook/assets/圖片 (4).png" alt=""><figcaption><p>We are admin now.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/圖片 (4) (1).png" alt=""><figcaption><p>We are admin now.</p></figcaption></figure>
 
 ## Initial Access
 
