@@ -53,6 +53,7 @@
 * [Authentication](web/authentication/README.md)
   * [SAML](web/authentication/saml.md)
   * [OAuth](web/authentication/oauth.md)
+* [Enumeration](web/enumeration.md)
 
 ## Defense
 
