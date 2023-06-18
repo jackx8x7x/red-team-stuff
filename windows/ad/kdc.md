@@ -40,4 +40,4 @@ Refer to .
 
 ## KDC Related Attacks
 
-* [Golden Ticket Attack](../credential-access/kerberos-ticket/golden-ticket-attack.md)
+* [Golden Ticket Attack](../credential-access/kerberos-ticket/golden-silver-ticket-attack.md)

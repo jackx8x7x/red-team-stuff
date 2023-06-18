@@ -122,7 +122,7 @@ Refer to [the code](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8
         preAuth = False
 ```
 
-Then it [computes the encrypted timestamp](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/kerberosv5.py#L255) using the client's key to prepare the padata to be sent in the second `KRB_AS_REQ`:
+Then it [computes the encrypted timestamp](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/kerberosv5.py#L255) using the client's key to prepare the padata to be sent in the second `KRB_AS_REQ` to demonstrate its knowledge of the user's key.
 
 ```python
         # Let's build the timestamp
@@ -186,7 +186,7 @@ Refer to [the code implementation](https://github.com/fortra/impacket/blob/8b3f9
 
 {% tabs %}
 {% tab title="KRB_TGS_REQ" %}
-The client presents the TGT (\[RFC4120] section 5.3), a [Kerberos authenticator](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/e720dd17-0703-4ce4-ab66-7ccf2d72c579#gt\_4ad68485-ee2b-49ab-a9a7-6c343bce39c6) (\[RFC4120] section 5.5.1), and the [service principal name (SPN)](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/e720dd17-0703-4ce4-ab66-7ccf2d72c579#gt\_547217ca-134f-4b43-b375-f5bca4c16ce4) in the request sent to the KDC for a service ticket (\[RFC4120]  section 5.3) for the server.
+The client [_presents the TGT_](https://datatracker.ietf.org/doc/html/rfc4120#section-5.4.1), a [Kerberos authenticator](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/e720dd17-0703-4ce4-ab66-7ccf2d72c579#gt\_4ad68485-ee2b-49ab-a9a7-6c343bce39c6), and the [service principal name (SPN)](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/e720dd17-0703-4ce4-ab66-7ccf2d72c579#gt\_547217ca-134f-4b43-b375-f5bca4c16ce4) in the request sent to the KDC for a service ticket for the server.
 
 #### Kerberos Authenticator
 
@@ -194,7 +194,7 @@ A timestamp encrypted with the TGS session key derived in the `KRB_AS_REP` used 
 
 The authenticator is embedded in a `KRB_AP_REQ` carried by the `KRB_TGS_REQ` message as a `PA_TGS_REQ` padata field, refer to the [\[RFC4120\] section 5.5.1](https://datatracker.ietf.org/doc/html/rfc4120#section-5.5.1).
 
-Implementation in Impacket:
+Implementation in the function [`getKerberosTGS`](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/kerberosv5.py#L384) of the Impacket package:
 
 ```python
     # Key Usage 7
@@ -211,6 +211,10 @@ Implementation in Impacket:
 ```
 
 #### Ticket-Granting Ticket
+
+Contained in the padata of an encoded AP-REQ request body as seen in the [\[RFC4120\] section 5.2.7.1](https://datatracker.ietf.org/doc/html/rfc4120#section-5.2.7.1).
+
+Implementation in the function [`getKerberosTGS`](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/kerberosv5.py#L373) of the Impacket package:
 {% endtab %}
 
 {% tab title="KRB_TGS_REP" %}

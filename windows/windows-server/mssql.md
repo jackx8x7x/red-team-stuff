@@ -27,13 +27,13 @@ impacket-mssqlclient PublicUser:GuestUserCantWrite1@escape
 # The variable SYSTEM_USER contains the name of the SQL login for the current session
 SQL> SELECT SYSTEM_USER;
 
-# Database user we mapped
+# Database user we mapped to
 SQL> SELECT USER_NAME();
 
 # If we are memeber of role
 SQL> SELECT IS_SRVROLEMEMBER('public');
 
-# Current user
+# Windows user
 SQL> SELECT suser_name();
 ```
 

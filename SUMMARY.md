@@ -37,7 +37,7 @@
 * [Credential Access](windows/credential-access/README.md)
   * [Kerberos Ticket](windows/credential-access/kerberos-ticket/README.md)
     * [Kerberoasting Attack](windows/credential-access/kerberos-ticket/kerberoasting-attack.md)
-    * [Golden Ticket Attack](windows/credential-access/kerberos-ticket/golden-ticket-attack.md)
+    * [Golden/Silver Ticket Attack](windows/credential-access/kerberos-ticket/golden-silver-ticket-attack.md)
     * [AS-REP Roasting Attack](windows/credential-access/kerberos-ticket/as-rep-roasting-attack.md)
   * [OS Credential Dumping](windows/credential-access/os-credential-dumping/README.md)
     * [DCsync Attack](windows/credential-access/os-credential-dumping/credential\_dumping.md)

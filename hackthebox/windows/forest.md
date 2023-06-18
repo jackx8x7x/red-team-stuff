@@ -110,3 +110,9 @@ We can now login to the target host with the credential we got via [WinRM](../..
 ```bash
 $ evil-winrm -i forest.htb -u svc-alfresco -p s3rvice
 ```
+
+## Miscellaneous
+
+### Golden Ticket Attack
+
+Since we get the account `krbtgt`'s password hash, we can conduct the [golden ticket attack](../../windows/credential-access/kerberos-ticket/golden-silver-ticket-attack.md#golden-ticket-attack).

