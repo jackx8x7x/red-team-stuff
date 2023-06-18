@@ -8,7 +8,7 @@ The original Kerberos 4 protocol was susceptible to an _offline dictionary and b
 
 ### Kerberos V5
 
-[Kerberos 5](./#as-exchange) introduces _pre-authentication_ which requires that requestors prove their identity by demonstrating the knowledge of the user's credentials before the KDC will issue a ticket for a particular principal.
+[Kerberos 5](../../auth/kerberos.md#as-exchange) introduces _pre-authentication_ which requires that requestors prove their identity by demonstrating the knowledge of the user's credentials before the KDC will issue a ticket for a particular principal.
 
 ### Implementation
 
@@ -27,7 +27,7 @@ Pre-authentication is controlled by KDC policy.
 3. The client append the required pre-authentication data to its AS\_REQ message this time.
 4. If the pre-authentication data is accepted, the KDC responds with an AS reply including the TGT ticket. Otherwise, the KDC will response another KRB\_ERROR message that indicates pre-authentication failed.
 
-Refer to the [Kerberos authentication service](./#authentication-service).
+Refer to the [Kerberos authentication service](../../auth/kerberos.md#authentication-service).
 
 ## ASREPRoasting Attack
 
@@ -58,7 +58,7 @@ The encrypted part in the `KRB_AS_REP` message is encrypted using the user passw
 
 {% tabs %}
 {% tab title="Impacket" %}
-We use the script [`GetNPUsers.py`](https://github.com/fortra/impacket/blob/master/examples/GetNPUsers.py) to conduct the attack, for example in the HackTheBox lab machine [`Forest`](../../../hackthebox/windows/active-directory/forest.md), we use this script to get the TGT ticket for the user `svc-alfresco`:
+We use the script [`GetNPUsers.py`](https://github.com/fortra/impacket/blob/master/examples/GetNPUsers.py) to conduct the attack, for example in the HackTheBox lab machine [`Forest`](../../../hackthebox/windows/forest.md), we use this script to get the TGT ticket for the user `svc-alfresco`:
 
 ```bash
 $ impacket-GetNPUsers htb.local/svc-alfresco -no-pass -format hashcat

@@ -4,11 +4,11 @@
 
 The Kerberos protocol defines how clients interact with a network authentication service.
 
-On the other hand, authorization is accomplished using [Privilege Attribute Certificate (PAC)](./#privilege-attribute-certificate-pac) data.
+On the other hand, authorization is accomplished using [Privilege Attribute Certificate (PAC)](kerberos.md#privilege-attribute-certificate-pac) data.
 
 ### Kerberos Tickets
 
-Clients obtain tickets from the [Kerberos Key Distribution Center (KDC)](../../ad/kdc/), which uses Active Directory as its [account database](../overview.md#account-database), and they present these tickets to servers, _as network credentials_.
+Clients obtain tickets from the [Kerberos Key Distribution Center (KDC)](../ad/kdc.md), which uses Active Directory as its [account database](overview.md#account-database), and they present these tickets to servers, _as network credentials_.
 
 ### Ticket-Granting Ticket
 
@@ -16,13 +16,13 @@ _Originally,_ The client used his _master key_ which is derived from the user pa
 
 To avoid users to enter their passwords frequently, the protocol introduces the usage of the ticket.
 
-When a user logs on, the client [requests a ticket](./#authentication-service) for the KDC just _as it would request a ticket for any other service_. The KDC responds by creating _**a logon session key**_ and _**a ticket**_ for the KDC's full [ticket-granting service](./#tgs-exchange).
+When a user logs on, the client [requests a ticket](kerberos.md#authentication-service) for the KDC just _as it would request a ticket for any other service_. The KDC responds by creating _**a logon session key**_ and _**a ticket**_ for the KDC's full [ticket-granting service](kerberos.md#tgs-exchange).
 
 {% embed url="https://learn.microsoft.com/en-us/windows/win32/secauthn/ticket-granting-tickets" %}
 
 ### GSS API
 
-Applications that use AP exchange messages directly are typically called "kerberized" applications. Most applications use the [Generic Security Service Application Program Interface](../overview.md#generic-security-services-gss) (GSS-API) and can even be wrapped by higher-level abstractions such as Simple Authentication and Security Layer (SASL) [\[RFC2222\]](https://go.microsoft.com/fwlink/?LinkId=90322).
+Applications that use AP exchange messages directly are typically called "kerberized" applications. Most applications use the [Generic Security Service Application Program Interface](overview.md#generic-security-services-gss) (GSS-API) and can even be wrapped by higher-level abstractions such as Simple Authentication and Security Layer (SASL) [\[RFC2222\]](https://go.microsoft.com/fwlink/?LinkId=90322).
 
 When an application wants to use Kerberos-based authentication, it uses either the higher-level [SSPI](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/e720dd17-0703-4ce4-ab66-7ccf2d72c579#gt\_fb216516-748b-4873-8bdd-64c5f4da9920) API to invoke Kerberos directly; or it uses SPNEGO [\[MS-SPNG\]](https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-spng/f377a379-c24f-4a0f-a3eb-0d835389e28a), which in turn invokes Kerberos.
 
@@ -59,7 +59,7 @@ Kerberos V5 is composed of three exchanges:
 * The Ticket-Granting Service (TGS) exchange
 * The Client/Server Authentication Protocol (AP) exchange
 
-<figure><img src="../../../.gitbook/assets/圖片 (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/圖片 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The AS exchange and TGS exchange are transported by Kerberos implementations. The AP exchange is passive and relies on an upper-layer application protocol to carry the AP exchange messages.
 
@@ -105,7 +105,7 @@ The client presents its principal name and [_shall_](https://learn.microsoft.com
 
 #### Pre-authentication
 
-By [tracing the packets seen in the Kerberos process](../logon.md#packet-tracing), we can see that the first `KRB_AS_REQ` message contains `PA-PAC-REQUEST` as the padata, then a second `KRB_AS_REQ` is sent with `pa-enc-timestamp` padata if the Kerberos client receives an error message when pre-authentication is required.
+By [tracing the packets seen in the Kerberos process](logon.md#packet-tracing), we can see that the first `KRB_AS_REQ` message contains `PA-PAC-REQUEST` as the padata, then a second `KRB_AS_REQ` is sent with `pa-enc-timestamp` padata if the Kerberos client receives an error message when pre-authentication is required.
 
 Refer to [the code](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/kerberosv5.py#L192) in the Kerberos implementation of function `getKerberosTGT` in Impacket, we see the Kerberos client is expecting a Kerberos error message:
 
@@ -153,7 +153,7 @@ The ticket_, with the logon session key embedded in it,_ is [encrypted with the 
 
 The logon session key is contained in [an encrypted part](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/asn1.py#L278), encrypted _with the user's master key_ derived from the user's logon password, in the [`KRB_AS_REP`](https://datatracker.ietf.org/doc/html/rfc4120#section-5.4.2) message.
 
-Refer to [the code implementation](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/kerberosv5.py#L325) in Impacket, we can see that the Kerberos client can decrypt the encrypted part to get the logon session key for further usage in [the TGS exchange](./#session-key-1):
+Refer to [the code implementation](https://github.com/fortra/impacket/blob/8b3f9eff06b3a14c09e8e64cfc762cf2adeed013/impacket/krb5/kerberosv5.py#L325) in Impacket, we can see that the Kerberos client can decrypt the encrypted part to get the logon session key for further usage in [the TGS exchange](kerberos.md#session-key-1):
 
 ```python
     # So, we have the TGT, now extract the new session key and finish
