@@ -6,7 +6,10 @@
 
 We can use Python packages including `requests` and `BeautifulSoup` to crawl the URL links appearing on the site.
 
+{% code title="url_crawler.py" %}
 ```python
+#!/usr/bin/python3
+
 import click
 import requests
 import sys
@@ -21,7 +24,7 @@ class Crawler:
         self.base_url = base_url
         self.host = urlparse(base_url).netloc
 
-    def crawl(self, url=None):
+    def crawl(self, url=None, level=0):
         if not url:
             url = self.base_url
 
@@ -33,7 +36,7 @@ class Crawler:
             except:
                 return
             self.links.add(url)
-            print(url)
+            print(' '*level+url)
             soup = bs(res.text, 'lxml')
 
             for attr in ['href', 'src']:
@@ -41,9 +44,9 @@ class Crawler:
                 for h in elements:
                     if h.startswith('/'):
                         url = self.base_url + h
-                        self.crawl(url)
+                        self.crawl(url, level=level+1)
                     elif self.host in h:
-                        self.crawl(h)
+                        self.crawl(h, level=level+1)
                         
     def write(self, wordlist):
         with open(wordlist, 'w') as f:
@@ -60,3 +63,4 @@ def main(url, output):
 
 main()
 ```
+{% endcode %}
