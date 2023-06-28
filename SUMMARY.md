@@ -47,6 +47,7 @@
 
 * [Process](linux/process/README.md)
   * [Namespace](linux/process/namespace.md)
+  * [Terminal](linux/process/terminal.md)
 
 ## Web
 
