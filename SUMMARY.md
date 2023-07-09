@@ -45,6 +45,8 @@
 
 ## Linux
 
+* [Management](linux/management/README.md)
+  * [Package](linux/management/package.md)
 * [Process](linux/process/README.md)
   * [Namespace](linux/process/namespace.md)
   * [Terminal](linux/process/terminal.md)
