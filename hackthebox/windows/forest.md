@@ -71,7 +71,7 @@ By Google, we found a product named [Alfresco Content Services](https://docs.alf
 
 From the configuration, we see that the account related to this service has been configured with _Kerberos pre-authentication_ disable.
 
-<figure><img src="../../.gitbook/assets/forest_alfresco.png" alt=""><figcaption><p><a href="https://docs.alfresco.com/process-services/latest/config/authenticate/#configuration-steps">Alfresco - Configuration Steps</a></p></figcaption></figure>
+<figure><img src="../../images/forest_alfresco.png" alt=""><figcaption><p><a href="https://docs.alfresco.com/process-services/latest/config/authenticate/#configuration-steps">Alfresco - Configuration Steps</a></p></figcaption></figure>
 
 This allows us to get the TGT for this account `svc-alfresco`, and conduct the [_AS-REP Roasting_ attack](../../windows/credential-access/kerberos-ticket/as-rep-roasting-attack.md) to retrieve the account password from the requested TGT.
 

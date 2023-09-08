@@ -437,7 +437,7 @@ We found an Express app source code under the user `victor`'s home directory and
 
 <figure><img src="../../.gitbook/assets/圖片 (15).png" alt=""><figcaption></figcaption></figure>
 
-Story goes on...
+The story goes on...
 
 ## Reference
 
