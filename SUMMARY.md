@@ -12,6 +12,7 @@
 * [Linux](hackthebox/linux/README.md)
   * [TwoMillion](hackthebox/linux/twomillion.md)
   * [Soccer](hackthebox/linux/soccer.md)
+  * [Pollution](hackthebox/linux/pollution.md)
 
 ## Windows
 
