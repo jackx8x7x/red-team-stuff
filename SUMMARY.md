@@ -13,6 +13,7 @@
   * [TwoMillion](hackthebox/linux/twomillion.md)
   * [Soccer](hackthebox/linux/soccer.md)
   * [Pollution](hackthebox/linux/pollution.md)
+  * [Pilgrimage](hackthebox/linux/pilgrimage.md)
 
 ## Windows
 
