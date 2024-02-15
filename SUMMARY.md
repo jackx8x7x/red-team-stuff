@@ -14,6 +14,7 @@
   * [Soccer](hackthebox/linux/soccer.md)
   * [Pollution](hackthebox/linux/pollution.md)
   * [Pilgrimage](hackthebox/linux/pilgrimage.md)
+  * [Sandworm](hackthebox/linux/sandworm.md)
 
 ## Windows
 
